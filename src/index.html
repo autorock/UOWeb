@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UOWeb</title>
+    <style>
+      body {
+        background-color: black;
+        overflow: hidden;
+      }
+
+      uow-player {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <dom-bind>
+      <template>
+        <uow-player action={{action}} direction="{{direction}}"></uow-player>
+      </template>
+    </dom-bind>
+
+    <script>
+      const RUN_THRESHOLD = 125;
+      let player = document.querySelector('dom-bind');
+      player.direction = 's';
+      player.action = 'idle';
+
+      let changeDirection = event => {
+        let element = document.querySelector('uow-player');
+
+        let offsetTop = element.offsetTop;
+        let offsetLeft = element.offsetLeft;
+        let offsetWidth = element.offsetWidth / 2;
+        let offsetHeight = element.offsetHeight / 2;
+
+        let clientX = event.clientX || event.touches[0].clientX;
+        let clientY = event.clientY || event.touches[0].clientY;
+
+        let clickX = clientX - offsetLeft;
+        let clickY = (clientY - offsetTop) * -1;
+
+        let ewThreshold = offsetWidth;
+        let nsThreshold = offsetHeight;
+
+        let nsDirection = '';
+        let ewDirection = '';
+
+        if (clickY >= nsThreshold) {
+          nsDirection = 'n';
+        }
+        if (clickY <= (nsThreshold * -1)) {
+          nsDirection = 's';
+        }
+        if (clickX >= ewThreshold) {
+          ewDirection = 'e';
+        }
+        if (clickX <= (ewThreshold* -1)) {
+          ewDirection = 'w';
+        }
+
+        if (nsDirection === '' && ewDirection === '') {
+          nsDirection = 's';
+        }
+
+        return nsDirection + ewDirection;
+      }
+
+      let idlePlayer = () => updatePlayer({action: 'idle'});
+
+      let movePlayer = event => {
+        event.preventDefault();
+        let action = cursorDistanceFromPlayer(event) > RUN_THRESHOLD
+          ? 'run'
+          : 'walk';
+        let direction = changeDirection(event);
+        return updatePlayer({direction, action});
+      }
+
+      let updatePlayer = state => Object.assign(player, state);
+
+      let cursorDistanceFromPlayer = event => {
+        let element = document.querySelector('uow-player');
+        let offsetTop = element.offsetTop;
+        let offsetLeft = element.offsetLeft;
+
+        let clientX = event.clientX || event.touches[0].clientX;
+        let clientY = event.clientY || event.touches[0].clientY;
+
+        let clickX = clientX - offsetLeft;
+        let clickY = (clientY - offsetTop) * -1;
+
+        return Math.sqrt(Math.pow(clickX, 2) + Math.pow(clickY, 2));
+      }
+
+      document.addEventListener('mousedown', movePlayer);
+      document.addEventListener('touchstart', movePlayer);
+      document.addEventListener('mouseup', idlePlayer);
+      document.addEventListener('touchend', idlePlayer);
+      document.addEventListener('mousemove', event => {
+        if(player.action  === 'idle') {
+          return;
+        }
+        movePlayer(event)
+      });
+      document.addEventListener('touchmove', event => {
+        if(player.action  === 'idle') {
+          return;
+        }
+        movePlayer(event)
+      })
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+
+.icon {
+  background-image: url('../images/sprite.png');
+}
+
+.icon-player_idle {
+  background-position: -0px -0px;
+  width: 464px;
+  height: 77px;
+}
+.icon-player_walk_e {
+  background-position: -0px -77px;
+  width: 580px;
+  height: 77px;
+}
+.icon-player_walk_n {
+  background-position: -0px -154px;
+  width: 580px;
+  height: 77px;
+}
+.icon-player_walk_ne {
+  background-position: -0px -231px;
+  width: 580px;
+  height: 77px;
+}
+.icon-player_walk_nw {
+  background-position: -0px -308px;
+  width: 580px;
+  height: 77px;
+}
+.icon-player_walk_s {
+  background-position: -0px -385px;
+  width: 580px;
+  height: 77px;
+}
+.icon-player_walk_se {
+  background-position: -0px -462px;
+  width: 580px;
+  height: 77px;
+}
+.icon-player_walk_sw {
+  background-position: -0px -539px;
+  width: 580px;
+  height: 77px;
+}
+.icon-player_walk_w {
+  background-position: -0px -616px;
+  width: 580px;
+  height: 77px;
+}

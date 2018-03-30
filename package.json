@@ -1,0 +1,65 @@
+{
+  "name": "midi-polymer",
+  "flat": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "watch": {
+    "build": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "js,html,css"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack; ./node_modules/http-server/bin/http-server dist/",
+    "start": "npm-watch build"
+  },
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0-pre.1",
+    "@webcomponents/webcomponentsjs": "^1.0.20"
+  },
+  "resolutions": {
+    "acorn": "5.2.1",
+    "ajv": "5.5.2",
+    "source-map": "0.6.1",
+    "yargs": "8.0.2",
+    "inherits": "2.0.3",
+    "minimist": "1.2.0",
+    "punycode": "1.4.1",
+    "hash-base": "3.0.4",
+    "camelcase": "4.1.0",
+    "cliui": "3.2.0",
+    "kind-of": "4.0.0",
+    "is-number": "3.0.0",
+    "string-width": "2.1.1",
+    "strip-ansi": "4.0.0",
+    "is-fullwidth-code-point": "2.0.0",
+    "ansi-regex": "3.0.0",
+    "assert-plus": "1.0.0",
+    "extsprintf": "1.4.0",
+    "async": "2.6.0",
+    "wordwrap": "0.0.3",
+    "qs": "6.4.0",
+    "nopt": "4.0.1",
+    "pify": "3.0.0",
+    "isarray": "1.0.0",
+    "readable-stream": "2.3.3",
+    "string_decoder": "1.0.3",
+    "loader-utils": "0.2.17",
+    "uglify-js": "3.2.2",
+    "utila": "0.4.0",
+    "domutils": "1.5.1",
+    "domelementtype": "1.3.0"
+  },
+  "devDependencies": {
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "http-server": "^0.10.0",
+    "npm-watch": "^0.3.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0"
+  }
+}
